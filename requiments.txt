@@ -1,3 +1,6 @@
 puTelegramBotAPI
 flask
 random
+re
+aiogram
+os

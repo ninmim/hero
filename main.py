@@ -21,7 +21,7 @@ def start(massage):
     bot.send_message(massage.chat.id, 'Если хочешь узнать что я могу, напиши /help')
 
 
-@dp.message_handler(commands=['help'])
+@bot.message_handler(commands=['help'])
 def help(message):
     markup=types.ReplyKeyboardMarkup(resize_keyboard=True,row_width=1)
     game=types.KeyboardButton('/start_game')
