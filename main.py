@@ -32,9 +32,6 @@ def help(message):
 def all_commands(message):
     bot.send_message(message.chat.id, 'Пока у меня только /start, /help, /start_game, /Get_another_card, /Stop, /all_commands, /register')
     bot.send_message(message.chat.id,'Но использовать /Get_another_card, /Stop, можно только после /start_game')
-@bot.message_handler(commands=['register'])
-def register(message):
-    x=int(message.string)
 global k
 k=4
 @bot.message_handler(commands =['spent','s','earend','e'], commands_prefix = '!/')
