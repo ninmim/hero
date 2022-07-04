@@ -723,10 +723,10 @@ def start_game(message):
                 flag_pol += 1
     bot.send_message(message.chat.id, 'Карты диллера')
     bot.send_media_group(message.chat.id, [telebot.types.InputMediaPhoto(first_card_dil), telebot.types.InputMediaPhoto(second_card_dil)])
-    bot.send_message(message.chat.id, f'У диллера{sum_dil}')
+    bot.send_message(message.chat.id, f'У диллера {sum_dil}')
     bot.send_message(message.chat.id, 'Ваши карты')
     bot.send_media_group(message.chat.id, [telebot.types.InputMediaPhoto(first_card_pol), telebot.types.InputMediaPhoto(second_card_pol)])
-    bot.send_message(message.chat.id, f'У вас{sum_pol}')
+    bot.send_message(message.chat.id, f'У вас {sum_pol}')
 
 
 @bot.message_handler(commands=['Get_another_card'])
@@ -916,12 +916,13 @@ def Get_another_card(message):
 
 @bot.message_handler(commands=['Stop'])
 def Stop(message):
-    global g
+    global g, sum_dil, sum_pol
     g=k
     markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
     markup.row('/all_commands')
-    bot.send_message(message.chat.id, 'Диллер берет карты')
-    Get_another_card_dil(message)
+    if sum_dil<sum_pol:
+        bot.send_message(message.chat.id, 'Диллер берет карты')
+        Get_another_card_dil(message)
 
 @bot.message_handler(commands=['Get_another_card_dil'])
 def Get_another_card_dil(message):
