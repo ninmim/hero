@@ -1104,6 +1104,7 @@ def Get_another_card_dil(message):
         bot.send_message(message.chat.id, 'Вы проиграли')
         help(message)
 
+bot.polling(none_stop=True)
 
 @server.route("/5553206056:AAE7ElBXf-Qavo8JoXWnkzt4zj_qZ-2k1uc",methods=["POST"])
 def redirect_massege():
