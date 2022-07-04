@@ -14,8 +14,8 @@ server=Flask(__name__)
 logger=telebot.logger
 logger.setLevel(logging.DEBUG)
 
-db_connection = psycopg2.connection('postgres://gdsumpjrfacirz:f0652f5a5486e15f811e495dcee6c081500f1581a1dff155dd318544f46458a9@ec2-99-80-170-190.eu-west-1.compute.amazonaws.com:5432/d3p6fgvaocq6mb',sslmode="require")
-db_object =dp_connection.cursor()
+db_connection = psycopg2.connect('postgres://gdsumpjrfacirz:f0652f5a5486e15f811e495dcee6c081500f1581a1dff155dd318544f46458a9@ec2-99-80-170-190.eu-west-1.compute.amazonaws.com:5432/d3p6fgvaocq6mb',sslmode="require")
+db_object =db_connection.cursor()
 
 @bot.message_handler(commands=['start'])
 def start(massage):
