@@ -1105,7 +1105,7 @@ def Get_another_card_dil(message):
         help(message)
 
 
-@server.route('/5553206056:AAE7ElBXf-Qavo8JoXWnkzt4zj_qZ-2k1uc',methods=['POST'])
+@server.route("/5553206056:AAE7ElBXf-Qavo8JoXWnkzt4zj_qZ-2k1uc",methods=["POST"])
 def redirect_massege():
     json_string=request.get_data().decode('utf-8')
     update =telebot.types.Update.de_json(json_string)
