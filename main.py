@@ -923,6 +923,8 @@ def Stop(message):
     if sum_dil<sum_pol:
         bot.send_message(message.chat.id, 'Диллер берет карты')
         Get_another_card_dil(message)
+    else:
+        help()
 
 @bot.message_handler(commands=['Get_another_card_dil'])
 def Get_another_card_dil(message):
