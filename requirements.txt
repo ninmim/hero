@@ -1,4 +1,4 @@
-puTelegramBotAPI
+pyTelegramBotAPI
 flask
 random
 re
