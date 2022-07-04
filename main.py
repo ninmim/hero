@@ -924,8 +924,9 @@ def Stop(message):
         bot.send_message(message.chat.id, 'Диллер берет карты')
         Get_another_card_dil(message)
     else:
-        help(message)
         bot.send_message(message.chat.id, 'Вы проиграли')
+        help(message)
+
 
 @bot.message_handler(commands=['Get_another_card_dil'])
 def Get_another_card_dil(message):
