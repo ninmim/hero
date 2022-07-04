@@ -23,10 +23,9 @@ def start(massage):
 
 @bot.message_handler(commands=['help'])
 def help(message):
-    markup=types.ReplyKeyboardMarkup(resize_keyboard=True,row_width=1)
-    game=types.KeyboardButton('/start_game')
-    commands=types.KeyboardButton('/all_commands')
-    markup.add(game,commands)
+    markup=telebot.types.ReplyKeyboardMarkup(resize_keyboard=True,row_width=1)
+    markup.row('/start_game')
+    markup.row('/all_commands')
     bot.send_message(message.chat.id,'Выберите кнопку', reply_markup=markup)
 @bot.message_handler(commands =['all_commands'])
 def all_commands(message):
@@ -46,6 +45,7 @@ def take_money(message):
         x=re.findall(r'\d+(?:.\d+)?',value)
         if len(x):
             value=float(x[0].replace(',','.'))
+            bot.send_message(message.chat.id,value)
         else:
             bot.send_message(message.chat.id, 'Не удалось определить сумму')
     else:
@@ -59,11 +59,10 @@ def start_game(message):
     random.shuffle(mas)
     sum_dil, sum_pol = 0, 0
     flag_dil, flag_pol = 0, 0
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
-    game = types.KeyboardButton('/Get_another_card')
-    stop = types.KeyboardButton('/Stop')
-    commands = types.KeyboardButton('/all_commands')
-    markup.add(game, stop, commands)
+    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
+    markup.row('/Get_another_card')
+    markup.row('/Stop')
+    markup.row('/all_commands')
     bot.send_message(message.chat.id,'Выберите кнопку', reply_markup=markup)
     prov = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51]
     for i in range(len(prov)):
@@ -908,9 +907,8 @@ def Get_another_card(message):
 def Stop(message):
     global g
     g=k
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
-    commands = types.KeyboardButton('/all_commands')
-    markup.add(commands)
+    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
+    markup.row('/all_commands')
     bot.send_message(message.chat.id, 'Диллер берет карты')
     Get_another_card_dil(message)
 
