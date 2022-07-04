@@ -24,6 +24,7 @@ def start(massage):
     bot.send_message(massage.chat.id,'Это карточная игра 21 в которую на данный момент ты можешь поиграть только с диллером, но в скором времени будут допилен функционал для игры с друзьями, монеты за победы и турнирные сетки с призами для победителей!')
     bot.send_message(massage.chat.id, 'Если хочешь узнать что я могу, напиши /help')
     id=massage.from_user.id
+    username=massage.from_user.username
     db_object.execute(f"SELECT id FROM users WHERE id = {id}")
     result = db_object.fetchone()
     if not result:
