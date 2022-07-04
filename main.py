@@ -8,8 +8,8 @@ from aiogram import types
 import re
 
 app_url='https://myfirstbotnik.herokuapp.com/'+'5553206056:AAE7ElBXf-Qavo8JoXWnkzt4zj_qZ-2k1uc'
-bot=telebot.TeleBot('app_url')
-server=Flask('__name__')
+bot=telebot.TeleBot('5553206056:AAE7ElBXf-Qavo8JoXWnkzt4zj_qZ-2k1uc')
+server=Flask(__name__)
 logger=telebot.logger
 logger.setLevel(logging.DEBUG)
 
@@ -46,7 +46,6 @@ def take_money(message):
         x=re.findall(r'\d+(?:.\d+)?',value)
         if len(x):
             value=float(x[0].replace(',','.'))
-            BotBD.add_record(message.from_user.id,operation,value)
         else:
             bot.send_message(message.chat.id, 'Не удалось определить сумму')
     else:
@@ -1108,7 +1107,7 @@ def Get_another_card_dil(message):
         help(message)
 
 
-@server.route('5553206056:AAE7ElBXf-Qavo8JoXWnkzt4zj_qZ-2k1uc',methods=['POST'])
+@server.route('/5553206056:AAE7ElBXf-Qavo8JoXWnkzt4zj_qZ-2k1uc',methods=['POST'])
 def redirect_massege():
     json_string=request.get_data().decode('utf-8')
     update =telebot.types.Update.de_json(json_string)
