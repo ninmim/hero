@@ -2,6 +2,7 @@ import telebot
 import random
 import os
 import logging
+import psycopg2
 from flask import Flask,request
 from telebot import types
 from aiogram import types
@@ -13,12 +14,21 @@ server=Flask(__name__)
 logger=telebot.logger
 logger.setLevel(logging.DEBUG)
 
+db_connection = psycopg2.connection('postgres://gdsumpjrfacirz:f0652f5a5486e15f811e495dcee6c081500f1581a1dff155dd318544f46458a9@ec2-99-80-170-190.eu-west-1.compute.amazonaws.com:5432/d3p6fgvaocq6mb',sslmode="require")
+db_object =dp_connection.cursor()
+
 @bot.message_handler(commands=['start'])
 def start(massage):
     bot.send_message(massage.chat.id,'Привет')
     bot.send_message(massage.chat.id, 'Что же из себя представляет данный бот?')
     bot.send_message(massage.chat.id,'Это карточная игра 21 в которую на данный момент ты можешь поиграть только с диллером, но в скором времени будут допилен функционал для игры с друзьями, монеты за победы и турнирные сетки с призами для победителей!')
     bot.send_message(massage.chat.id, 'Если хочешь узнать что я могу, напиши /help')
+    id=massage.from_user.id
+    db_object.execute(f"SELECT id FROM users WHERE id = {id}")
+    result = db_object.fetchone()
+    if not result:
+        db_object.execute(f"INSERT INTO  users(id,username,mssages) VALUES(%s,%s,%s)", (id,username,0))
+        db_connection.commit()
 
 
 @bot.message_handler(commands=['help'])
