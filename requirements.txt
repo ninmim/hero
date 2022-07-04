@@ -1,6 +1,4 @@
 pyTelegramBotAPI
 flask
-random
 re
 aiogram
-os
